@@ -1,7 +1,5 @@
 # Custom aliases and functions
 
-# ALIASES
-
 # Code Editor
 alias edit="code"
 alias codeupdate="sudo apt-get install code"
@@ -26,11 +24,9 @@ alias mytheme="edit $DOTFILESHOME/themes/morgan.zsh-theme"
 # System Aliases
 alias settime="sudo ntpdate -u pool.ntp.org"
 alias lookat="watch -n1 -- "
-alias migrate='venv && /srv/volta/volta_env/repo/webserver/manage.py migrate volta'
 alias search='find . -name'
 alias killchromes='killall -i chrome'
 alias rmpyc="find . -name '*.pyc' -exec rm -rf {} \;"
-alias virt="source /srv/volta/volta_env/bin/activate"
 alias act="virt"
 alias rebuildnode="sudo apt-get --purge -f remove node && sudo apt-get --purge -f remove nodejs && sudo apt-get -f install nodejs"
 
@@ -66,9 +62,3 @@ function vnpm() {
     sudo rm `which npm`
     sudo ln -s /usr/local/n/versions/node/$1/lib/node_modules/npm/cli.js /usr/local/bin/npm
 }
-
-# Setup zsh-git-promt https://github.com/olivierverdier/zsh-git-prompt
-# source $HOME/zsh-git-prompt/zshrc.sh
-
-# # Necessary for syntax highlighting to run
-# source $HOME/dev/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
