@@ -86,6 +86,10 @@ main() {
   printf "${NORMAL}"
   env zsh
 
+  # update the vimrc file with the template
+    cp $ZSH/templates/.vimrc ~/
+
+
   cd ~/.dotfiles/custom/plugins;
   git clone git://github.com/zsh-users/zsh-syntax-highlighting.git;
   git clone git@github.com:olivierverdier/zsh-git-prompt.git;
