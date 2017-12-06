@@ -14,10 +14,18 @@ alias newbranch="getdevelop && git checkout -b "
 alias gitgraph="git log --graph --pretty=oneline --abbrev-commit"
 alias mylog="git log --author=Morgan"
 alias mygraph="git log --graph --pretty=oneline --abbrev-commit --author=Morgan"
+alias difflast="git diff HEAD~1"
+alias jiracommit="git commit --allow-empty -m"
+
+# Locations
+export DOTFILESHOME=$HOME/.dotfiles
+export DEVHOME=$HOME/Developer
+
+alias dev="cd $DEVHOME && ls"
 
 # Zsh aliases
-export DOTFILESHOME=$HOME/.dotfiles
 alias settings="edit $HOME/.zshrc"
+alias dotfiles="cd $DOTFILESHOME"
 alias shortcuts="edit $DOTFILESHOME/custom/aliases.zsh"
 alias mytheme="edit $DOTFILESHOME/themes/morgan.zsh-theme"
 
@@ -45,7 +53,7 @@ function pr() {
     # Check to see if the git checkout was successful
     BRANCH=$(git rev-parse --abbrev-ref HEAD)
     if [[ "$BRANCH" == "pr/$1" ]]; then
-        git pull origin pull/$1/head:pr/$1
+        git pull -f origin pull/$1/head:pr/$1
         checkmigrations
     else
         echo 'Was not able to change branch';
@@ -61,4 +69,10 @@ function getbranch() {
 function vnpm() {
     sudo rm `which npm`
     sudo ln -s /usr/local/n/versions/node/$1/lib/node_modules/npm/cli.js /usr/local/bin/npm
+}
+
+# Change node and npm versions before node v4
+function chnode() {
+    sudo n $1
+    sudo vnpm $1
 }
