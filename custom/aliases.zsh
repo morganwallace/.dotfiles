@@ -10,7 +10,6 @@ alias gits="git status"
 alias gitundo="git reset --soft HEAD~"
 alias delbranch="git branch -D"
 alias cleanbranches="git checkout develop && git pull origin develop && git branch --merged | grep -Ev 'develop|core|\*' | xargs git branch -d && git remote prune origin"
-alias newbranch="getdevelop && git checkout -b "
 alias gitgraph="git log --graph --pretty=oneline --abbrev-commit"
 alias mylog="git log --author=Morgan"
 alias mygraph="git log --graph --pretty=oneline --abbrev-commit --author=Morgan"
@@ -35,6 +34,7 @@ alias lookat="watch -n1 -- "
 alias search='find . -name'
 alias killchromes='killall -i chrome'
 alias rmpyc="find . -name '*.pyc' -exec rm -rf {} \;"
+alias virt="source ${VENV_BIN}activate"
 alias act="virt"
 alias rebuildnode="sudo apt-get --purge -f remove node && sudo apt-get --purge -f remove nodejs && sudo apt-get -f install nodejs"
 
