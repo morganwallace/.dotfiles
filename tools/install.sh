@@ -26,8 +26,14 @@ main() {
 
   CHECK_ZSH_INSTALLED=$(grep /zsh$ /etc/shells | wc -l)
   if [ ! $CHECK_ZSH_INSTALLED -ge 1 ]; then
-    printf "${YELLOW}Zsh is not installed!${NORMAL} Please install zsh first!\n"
-    exit
+    printf "${YELLOW}Zsh is not installed!${NORMAL} Installing Now!\n"
+    if [ "$(uname)" == "Darwin" ]; then
+      sudo brew install zsh zsh-completions
+    elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+      sudo apt install zsh
+    else
+      exit
+    fi
   fi
   unset CHECK_ZSH_INSTALLED
 
@@ -35,19 +41,13 @@ main() {
     ZSH=~/.dotfiles
   fi
 
-  # if [ -d "$ZSH" ]; then
-  #   printf "${YELLOW}You already have Oh My Zsh installed.${NORMAL}\n"
-  #   printf "You'll need to remove $ZSH if you want to re-install.\n"
-  #   exit
-  # fi
-
   printf "${BLUE}Looking for an existing zsh config...${NORMAL}\n"
   if [ -f ~/.zshrc ] || [ -h ~/.zshrc ]; then
     printf "${YELLOW}Found ~/.zshrc.${NORMAL} ${GREEN}Backing up to ~/.zshrc.pre-oh-my-zsh${NORMAL}\n";
     mv ~/.zshrc ~/.zshrc.pre-oh-my-zsh;
   fi
 
-  printf "${BLUE}Using the Oh My Zsh template file and adding it to ~/.zshrc${NORMAL}\n"
+  printf "${BLUE}Using the Zsh template file and adding it to ~/.zshrc${NORMAL}\n"
   cp $ZSH/templates/zshrc.zsh-template ~/.zshrc
   sed "/^export ZSH=/ c\\
   export ZSH=$ZSH
@@ -75,13 +75,7 @@ main() {
   echo '/ /_/ / / / /  / / / / / / /_/ /    / /_(__  ) / / / '
   echo '\____/_/ /_/  /_/ /_/ /_/\__, /    /___/____/_/ /_/  '
   echo '                        /____/                       ....is now installed!'
-  echo ''
-  echo ''
-  echo 'Please look over the ~/.zshrc file to select plugins, themes, and options.'
-  echo ''
-  echo 'p.s. Follow us at https://twitter.com/ohmyzsh.'
-  echo ''
-  echo 'p.p.s. Get stickers and t-shirts at http://shop.planetargon.com.'
+  echo '...Morgans fork'
   echo ''
   printf "${NORMAL}"
   env zsh
@@ -91,8 +85,8 @@ main() {
 
 
   cd ~/.dotfiles/custom/plugins;
-  git clone git://github.com/zsh-users/zsh-syntax-highlighting.git;
-  git clone git@github.com:olivierverdier/zsh-git-prompt.git;
-}
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+  git clone https://github.com/olivierverdier/zsh-git-prompt.git
+  git clone https://github.com/zpm-zsh/autoenv
 
 main
