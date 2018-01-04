@@ -81,7 +81,12 @@ main() {
   env zsh
 
   # update the vimrc file with the template
-    cp $ZSH/templates/.vimrc ~/
+  printf "${BLUE}Looking for an existing vim config...${NORMAL}\n"
+  if [ -f ~/.vimrc ] || [ -h ~/.vimrc ]; then
+    printf "${YELLOW}Found ~/.vimrc.${NORMAL} ${GREEN}Backing up to ~/.vimrc.pre-oh-my-zsh${NORMAL}\n";
+    mv ~/.vimrc ~/.vimrc.pre-oh-my-zsh;
+  fi
+  cp $ZSH/templates/.vimrc ~/
 
 
   cd ~/.dotfiles/custom/plugins;
