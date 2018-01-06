@@ -88,10 +88,8 @@ main() {
   fi
   cp $ZSH/templates/.vimrc ~/
 
-
-  cd ~/.dotfiles/custom/plugins;
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
-  git clone https://github.com/olivierverdier/zsh-git-prompt.git
-  git clone https://github.com/zpm-zsh/autoenv
+  # install custom plugins
+  bash $ZSH/tools/install_plugins.sh
+}
 
 main
