@@ -20,26 +20,7 @@ main() {
     NORMAL=""
   fi
 
-  # Only enable exit-on-error after the non-critical colorization stuff,
-  # which may fail on systems lacking tput or terminfo
-  set -e
-
-  CHECK_ZSH_INSTALLED=$(grep /zsh$ /etc/shells | wc -l)
-  if [ ! $CHECK_ZSH_INSTALLED -ge 1 ]; then
-    printf "${YELLOW}Zsh is not installed!${NORMAL} Installing Now!\n"
-    if [ "$(uname)" == "Darwin" ]; then
-      sudo brew install zsh zsh-completions
-    elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-      sudo apt install zsh
-    else
-      exit
-    fi
-  fi
-  unset CHECK_ZSH_INSTALLED
-
-  if [ ! -n "$ZSH" ]; then
-    ZSH=~/.dotfiles
-  fi
+  ZSH=~/.dotfiles
 
   printf "${BLUE}Looking for an existing zsh config...${NORMAL}\n"
   if [ -f ~/.zshrc ] || [ -h ~/.zshrc ]; then
@@ -54,34 +35,14 @@ main() {
   " ~/.zshrc > ~/.zshrc-omztemp
   mv -f ~/.zshrc-omztemp ~/.zshrc
 
-  # If this user's login shell is not already "zsh", attempt to switch.
-  TEST_CURRENT_SHELL=$(expr "$SHELL" : '.*/\(.*\)')
-  if [ "$TEST_CURRENT_SHELL" != "zsh" ]; then
-    # If this platform provides a "chsh" command (not Cygwin), do it, man!
-    if hash chsh >/dev/null 2>&1; then
-      printf "${BLUE}Time to change your default shell to zsh!${NORMAL}\n"
-      chsh -s $(grep /zsh$ /etc/shells | tail -1)
-    # Else, suggest the user do so manually.
-    else
-      printf "I can't change your shell automatically because this system does not have chsh.\n"
-      printf "${BLUE}Please manually change your default shell to zsh!${NORMAL}\n"
-    fi
-  fi
-
   printf "${GREEN}"
-  echo '         __                                     __   '
-  echo '  ____  / /_     ____ ___  __  __   ____  _____/ /_  '
-  echo ' / __ \/ __ \   / __ `__ \/ / / /  /_  / / ___/ __ \ '
-  echo '/ /_/ / / / /  / / / / / / /_/ /    / /_(__  ) / / / '
-  echo '\____/_/ /_/  /_/ /_/ /_/\__, /    /___/____/_/ /_/  '
-  echo '                        /____/                       ....is now installed!'
-  echo '...Morgans fork'
-  echo ''
+  echo '____________ ___________________   _______    ______ _______________________      _____________'
+  echo '|  |  |     |_____|  ___|_____| \  |______    |     |     | |   |______  |  |     |_____|______'
+  echo '|  |  |_____|    \|_____|     |  \_______|    |_____|_____| |   |      __|__|_____|___________|'
+                                                                                                
   printf "${NORMAL}"
   env zsh
 
-  # install custom plugins
-  bash $ZSH/tools/install_plugins.sh
 }
 
 main

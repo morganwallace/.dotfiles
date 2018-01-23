@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.dotfiless
+export ZSH=$HOME/.dotfiles
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -53,8 +53,6 @@ ZSH_THEME="morgan"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git command-not-found sudo powerline django fabric jsontools pip python fast-syntax-highlighting autoenv)
 
-source $ZSH/oh-my-zsh.sh
-
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -84,5 +82,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source $ZSH/plugins/zsh-git-prompt/zshrc.sh
+source $ZSH/custom/plugins/zsh-git-prompt/zshrc.sh
+source $ZSH/oh-my-zsh.sh
+
 export EDITOR=vim

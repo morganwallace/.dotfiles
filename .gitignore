@@ -4,3 +4,5 @@ log/
 
 custom/vq*
 custom/plugins
+
+*.pyc
