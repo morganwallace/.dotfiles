@@ -37,7 +37,7 @@ def install_dotfiles():
     """Setup custom stuff on top of omz."""
     try:
         local('rm -rf %s' % (os.path.join(omz_path, 'custom')))
-        local('cp -rf %s %s'  % (os.path.join(dotfiles, 'custom'), os.path.join(omz_path, 'custom')))
+        local('ln -sf %s %s'  % (os.path.join(dotfiles, 'custom'), os.path.join(omz_path, 'custom')))
         get_vq_aliases(os.path.join(omz_path, 'custom'))
         local('cp %s %s' %\
             (os.path.join(dotfiles, 'templates', 'zshrc.zsh-template'),
