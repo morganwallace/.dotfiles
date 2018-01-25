@@ -20,7 +20,6 @@ main() {
     NORMAL=""
   fi
 
-  ZSH=~/.dotfiles
 
   printf "${BLUE}Looking for an existing zsh config...${NORMAL}\n"
   if [ -f ~/.zshrc ] || [ -h ~/.zshrc ]; then
@@ -30,10 +29,7 @@ main() {
 
   printf "${BLUE}Using the Zsh template file and adding it to ~/.zshrc${NORMAL}\n"
   cp $ZSH/templates/zshrc.zsh-template ~/.zshrc
-  sed "/^export ZSH=/ c\\
-  export ZSH=$ZSH
-  " ~/.zshrc > ~/.zshrc-omztemp
-  mv -f ~/.zshrc-omztemp ~/.zshrc
+
 
   printf "${GREEN}"
   echo '____________ ___________________   _______    ______ _______________________      _____________'
@@ -41,8 +37,8 @@ main() {
   echo '|  |  |_____|    \|_____|     |  \_______|    |_____|_____| |   |      __|__|_____|___________|'
                                                                                                 
   printf "${NORMAL}"
-  env zsh
 
+  env zsh
 }
 
 main
