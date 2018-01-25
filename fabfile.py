@@ -9,6 +9,7 @@ from fabric.context_managers import cd
 home = os.path.expanduser('~')
 omz_path = os.path.join(home, '.oh-my-zsh')
 dotfiles = os.path.join(home, '.dotfiles')
+zshrc_file = os.path.join(home, '.zshrc')
 
 def echo(printStr):
     local('echo "%s"' % (str(printStr)))
@@ -19,7 +20,14 @@ def install_omz():
     # Check to see if omz exists already
     try:
         shutil.rmtree(omz_path)
-        os.remove(os.path.join(home, '.zshrc'))
+    except:
+        pass
+    try:
+        os.remove(zshrc_file)
+    except:
+        pass
+    try:
+        local('rm -rf %s' % (os.path.join(home, '.zsh*')))
     except:
         pass
     with cd(home):
@@ -28,11 +36,15 @@ def install_omz():
 def install_dotfiles():
     """Setup custom stuff on top of omz."""
     try:
-        local('ln -sf %s %s'  % (os.path.join(dotfiles, 'custom'), os.path.join(omz_path, 'custom')))
+        local('rm -rf %s' % (os.path.join(omz_path, 'custom')))
+        local('cp -rf %s %s'  % (os.path.join(dotfiles, 'custom'), os.path.join(omz_path, 'custom')))
         get_vq_aliases(os.path.join(omz_path, 'custom'))
-        local('bash %s' % (os.path.join(dotfiles, 'tools', 'install.sh')))
+        local('cp %s %s' %\
+            (os.path.join(dotfiles, 'templates', 'zshrc.zsh-template'),
+            zshrc_file))
     except:
         pass
+    local('bash %s' % (os.path.join(dotfiles, 'tools', 'install.sh')))
 
 def get_vq_aliases(target_path):
     try:
@@ -58,4 +70,4 @@ def install_plugins():
             (os.path.join(dotfiles_plugins_path, 'autoenv')))
     except:
         pass
-    local('source ~/.zshrc')
+    local('source ' + zshrc_file)
