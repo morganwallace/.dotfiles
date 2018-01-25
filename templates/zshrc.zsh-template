@@ -82,7 +82,6 @@ plugins=(git command-not-found sudo powerline django fabric jsontools pip python
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source $ZSH/custom/plugins/zsh-git-prompt/zshrc.sh
-source $ZSH/oh-my-zsh.sh
+source ~/.oh-my-zsh/oh-my-zsh.sh
 
 export EDITOR=vim
