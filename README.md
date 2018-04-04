@@ -12,4 +12,5 @@ Install fabric (python) if not already installed on machine
 `pip install fabric`
 
 Then run the fab command to install everything
+
 `fab install_dotfiles`
