@@ -13,4 +13,4 @@ Install fabric (python) if not already installed on machine
 
 Then run the fab command to install everything
 
-`cd .dotfiles && fab install_omz && fab install_dotfiles`
+`cd .dotfiles && fab install_omz && fab install_plugins && fab install_dotfiles`
