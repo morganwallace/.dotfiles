@@ -51,7 +51,7 @@ ZSH_THEME="morgan"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git command-not-found sudo powerline django fabric jsontools pip python fast-syntax-highlighting autoenv git-prompt)
+plugins=(git command-not-found sudo powerline django fabric jsontools pip python fast-syntax-highlighting git-prompt)
 
 # User configuration
 

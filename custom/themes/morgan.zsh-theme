@@ -21,7 +21,7 @@
 
 # The prompt
 
-PROMPT='%{$fg[cyan]%}%3/ %{$fg_bold[blue]%}⭆ %{$reset_color%} ' # ☛ ☠
+PROMPT='%{$fg[cyan]%}%3/ %{$fg_bold[blue]%}☛ %{$reset_color%} ' # ☛ ☠
 
 # The right-hand prompt
 

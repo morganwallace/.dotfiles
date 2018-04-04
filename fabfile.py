@@ -60,14 +60,9 @@ def install_plugins():
         os.makedirs(dotfiles_plugins_path)
     except:
         pass
-    try:   
+    try:
         local('git clone https://github.com/zsh-users/zsh-syntax-highlighting.git %s' %\
             (os.path.join(dotfiles_plugins_path, 'zsh-syntax-highlighting')))
     except:
         pass
-    try:   
-        local('git clone https://github.com/zpm-zsh/autoenv %s' %\
-            (os.path.join(dotfiles_plugins_path, 'autoenv')))
-    except:
-        pass
-    local('source ' + zshrc_file)
+
