@@ -5,7 +5,7 @@ This is a wraps [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh) and adds 
 ### Installation
 Clone:
 
-`git clone git@github.com:morganwallace/.dotfiles.git ~/.dotfiles`
+`cd ~ && git clone git@github.com:morganwallace/.dotfiles.git ~/.dotfiles`
 
 Install fabric (python) if not already installed on machine
 
@@ -13,4 +13,4 @@ Install fabric (python) if not already installed on machine
 
 Then run the fab command to install everything
 
-`fab install_dotfiles`
+`cd .dotfiles && fab install_omz && fab install_dotfiles`
