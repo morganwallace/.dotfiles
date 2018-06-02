@@ -16,6 +16,8 @@ alias mygraph="git log --graph --pretty=oneline --abbrev-commit --author=Morgan"
 alias difflast="git diff HEAD~1"
 alias jiracommit="git commit --allow-empty -m"
 
+alias svba="source venv/bin/activate"
+
 # Locations
 export DOTFILESHOME=$HOME/.dotfiles
 export DEVHOME=$HOME/Developer
