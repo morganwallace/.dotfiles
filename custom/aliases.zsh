@@ -28,7 +28,7 @@ alias dev="cd $DEVHOME && ls"
 alias settings="edit $HOME/.zshrc"
 alias dotfiles="cd $DOTFILESHOME"
 alias shortcuts="edit $DOTFILESHOME/custom/aliases.zsh"
-alias mytheme="edit $DOTFILESHOME/themes/morgan.zsh-theme"
+alias mytheme="edit $DOTFILESHOME/custom/themes/morgan.zsh-theme"
 
 # System Aliases
 alias settime="sudo ntpdate -u pool.ntp.org"
