@@ -65,3 +65,6 @@ def plugins():
     if not os.path.exists(zsh_highlighting_path):
         local('git clone https://github.com/zsh-users/zsh-syntax-highlighting.git %s' %
               (zsh_highlighting_path))
+
+def uninstall():
+    local('bash %s' % os.path.join(OMZ_PATH, 'tools', 'uninstall.sh'))
