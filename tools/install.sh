@@ -26,7 +26,15 @@ main() {
 
   if ! command -v zsh >/dev/null 2>&1; then
     printf "${YELLOW}Zsh is not installed!${NORMAL} Please install zsh first!\n"
-    exit
+    if ! command -v apt-get >/dev/null 2>&1; then
+      sudo apt-get install zsh
+    fi
+    if ! command -v brew >/dev/null 2>&1; then
+      brew install zsh
+    fi
+    if ! command -v zsh >/dev/null 2>&1; then
+      printf "ZSH was not able to be install automatically. See\nhttps://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH#install-and-set-up-zsh-as-default"
+    fi
   fi
 
   if [ ! -n "$ZSH" ]; then
