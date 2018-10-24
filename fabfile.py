@@ -1,68 +1,70 @@
 import os
 import shutil
-import subprocess
 
-from fabric.api import local, env, run
+from fabric.api import local
 from fabric.context_managers import cd
 
 
-home = os.path.expanduser('~')
-omz_path = os.path.join(home, '.oh-my-zsh')
-dotfiles = os.path.join(home, '.dotfiles')
-zshrc_file = os.path.join(home, '.zshrc')
+HOME = os.path.expanduser('~')
+OMZ_PATH = os.path.join(HOME, '.oh-my-zsh')
+DOTFILES_PATH = os.path.join(HOME, '.dotfiles')
+ZSHRC_FILE_PATH = os.path.join(HOME, '.zshrc')
+DOTFILES_PLUGINS_PATH = os.path.join(DOTFILES_PATH, 'custom', 'plugins')
 
-def echo(printStr):
-    local('echo "%s"' % (str(printStr)))
 
-def install_omz():
+def echo(print_str):
+    local('echo "%s"' % (str(print_str)))
+
+
+def omz():
     echo('installing oh-my-zsh')
 
     # Check to see if omz exists already
     try:
-        shutil.rmtree(omz_path)
+        shutil.rmtree(OMZ_PATH)
     except:
         pass
     try:
-        os.remove(zshrc_file)
+        os.remove(ZSHRC_FILE_PATH)
     except:
         pass
     try:
-        local('rm -rf %s' % (os.path.join(home, '.zsh*')))
+        local('rm -rf %s' % (os.path.join(HOME, '.zsh*')))
     except:
         pass
-    with cd(home):
-        local('sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"')
+    with cd(HOME):
+        local('sh -c "$(curl -fsSL \
+            https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"')
 
-def install_dotfiles():
+
+def dotfiles():
     """Setup custom stuff on top of omz."""
     try:
-        # local('rm -rf %s' % (os.path.join(omz_path, 'custom')))
-        local('ln -sf %s %s'  % (os.path.join(dotfiles, 'custom'), os.path.join(omz_path, 'custom', 'morgans_custom')))
-        get_vq_aliases(os.path.join(omz_path, 'custom', 'morgans_custom'))
-        local('cp %s %s' %\
-            (os.path.join(dotfiles, 'templates', 'zshrc.zsh-template'),
-            zshrc_file))
+        local('ln -sf %s %s' % (os.path.join(DOTFILES_PATH, 'custom'),
+                                os.path.join(OMZ_PATH, 'custom', 'morgans_custom')))
+        local('cp %s %s' %
+              (os.path.join(DOTFILES_PATH, 'templates', 'zshrc.zsh-template'),
+               ZSHRC_FILE_PATH))
+        local('cp {} {}'.format(os.path.join(DOTFILES_PATH, '.gitignore_global')))
     except:
         pass
-    local('bash %s' % (os.path.join(dotfiles, 'tools', 'install.sh')))
-
-def get_vq_aliases(target_path):
-    try:
-        local('ln -sf /srv/volta/vq* %s' % (target_path))
-    except:
-        pass
+    local('bash %s' % (os.path.join(DOTFILES_PATH, 'tools', 'install.sh')))
 
 
-def install_plugins():
-    echo('\n\n\n Adding Custom Plugins \n\n')
-    dotfiles_plugins_path = os.path.join(dotfiles, 'custom', 'plugins')
-    try:
-        os.makedirs(dotfiles_plugins_path)
-    except:
-        pass
-    try:
-        local('git clone https://github.com/zsh-users/zsh-syntax-highlighting.git %s' %\
-            (os.path.join(dotfiles_plugins_path, 'zsh-syntax-highlighting')))
-    except:
-        pass
+def get_vq_aliases():
+    if os.path.exists('/srv/volta'):
+        local('ln -sf /srv/volta/vq* %s' %
+              (os.path.join(OMZ_PATH, 'custom', 'morgans_custom')))
 
+
+def plugins():
+    if not os.path.exists(DOTFILES_PLUGINS_PATH):
+        os.makedirs(DOTFILES_PLUGINS_PATH)
+    zsh_highlighting_path = os.path.join(
+        DOTFILES_PLUGINS_PATH, 'zsh-syntax-highlighting')
+    if not os.path.exists(zsh_highlighting_path):
+        local('git clone https://github.com/zsh-users/zsh-syntax-highlighting.git %s' %
+              (zsh_highlighting_path))
+
+def uninstall():
+    local('bash %s' % os.path.join(OMZ_PATH, 'tools', 'uninstall.sh'))

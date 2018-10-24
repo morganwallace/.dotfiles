@@ -2,16 +2,9 @@
     "files.insertFinalNewline": true,
     "window.zoomLevel": 1,
     "gitlens.advanced.messages": {
-        "suppressCommitHasNoPreviousCommitWarning": false,
-        "suppressCommitNotFoundWarning": false,
-        "suppressFileNotUnderSourceControlWarning": false,
-        "suppressGitVersionWarning": false,
-        "suppressLineUncommittedWarning": false,
-        "suppressNoRepositoryWarning": false,
-        "suppressUpdateNotice": false,
+        "suppressShowKeyBindingsNotice": true,
         "suppressWelcomeNotice": true
     },
-    "python.linting.pylintPath": "/Users/morganwallace/Voltaiq/volta/webserver/volta/.pylintrc",
     "workbench.iconTheme": "vscode-icons",
     "gitlens.blame.file.annotationType": "hover",
     "gitlens.codeLens.enabled": false,
@@ -22,5 +15,6 @@
         "**/CVS": true,
         "**/.DS_Store": true,
         "**/*.pyc": true
-    }
+    },
+    "python.linting.enabled": true,
 }

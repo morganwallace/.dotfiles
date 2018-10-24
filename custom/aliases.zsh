@@ -2,6 +2,7 @@
 
 # Code Editor
 alias edit="code"
+export EDITOR='code'
 alias codeupdate="sudo apt-get install code"
 alias sublupdate="sudo apt-get install subl"
 
@@ -63,7 +64,6 @@ function pr() {
     BRANCH=$(git rev-parse --abbrev-ref HEAD)
     if [[ "$BRANCH" == "pr/$1" ]]; then
         git pull -f origin pull/$1/head:pr/$1
-        checkmigrations
     else
         echo 'Was not able to change branch';
     fi

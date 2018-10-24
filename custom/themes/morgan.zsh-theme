@@ -19,13 +19,16 @@
 
 # Thanks to Steve Losh: http://stevelosh.com/blog/2009/03/candy-colored-terminal/
 
-# The prompt
+### The prompt
 
+# Left-hand prompt
 PROMPT='%{$fg[cyan]%}%3/ %{$fg_bold[blue]%}☛ %{$reset_color%} ' # ☛ ☠
 
-# The right-hand prompt
-
+# Right-hand prompt
+# looks like this:  11:48:40 (master*) ☄
 # RPROMPT='${time} %{$fg[magenta]%}$(git_prompt_info)%{$reset_color%}$(git_prompt_status)%{$reset_color%}$(git_prompt_ahead)%{$reset_color%}'
+
+# Looks like this: (master|✚3)
 RPROMPT='%{$fg[magenta]%}$(git_super_status)%{$reset_color%}'
 
 # Add this at the start of RPROMPT to include rvm info showing ruby-version@gemset-name

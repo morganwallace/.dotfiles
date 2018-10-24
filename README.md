@@ -19,3 +19,6 @@ fab install_omz
 fab install_plugins
 fab install_dotfiles
 ```
+
+### Fast install
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/morganwallace/.dotfiles/master/tools/install.sh)"
