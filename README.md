@@ -3,6 +3,23 @@
 This is a wraps [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh) and adds my customizations after ZSH and OH my ZSH install.
 
 ### Installation
+
+#### Prerequisites
+ZSH must already be installed:
+* MacOs
+
+`brew install zsh`
+
+* Ubuntu
+
+`sudo apt-get install zsh`
+
+#### Fast install
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/morganwallace/.dotfiles/master/tools/install.sh)"
+```
+
+#### Or install step by step
 Clone:
 
 `cd ~ && git clone git@github.com:morganwallace/.dotfiles.git ~/.dotfiles`
@@ -18,9 +35,4 @@ cd .dotfiles
 fab install_omz
 fab install_plugins
 fab install_dotfiles
-```
-
-### Fast install
-```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/morganwallace/.dotfiles/master/tools/install.sh)"
 ```
