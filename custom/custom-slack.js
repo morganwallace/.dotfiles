@@ -112,8 +112,9 @@ const allowedChildWindowEventMethod = [
        /* Modify these to change your theme colors: */
        --primary: #61AFEF;
        --text: #ABB2BF;
-       --background: #282C34;
-       --background-elevated: #3B4048;
+       --background: rgb(29, 30, 30);
+       --background-elevated: rgb(45, 45, 45);
+       --primary-faded: #2d414e;
     }
     div.c-message.c-message--light.c-message--hover
     {
@@ -168,7 +169,7 @@ const allowedChildWindowEventMethod = [
      
     }
   
-    #msg_input.texty_legacy .ql-placeholder {
+    .ql-placeholder {
       color: lightgray !important;
     }
   
@@ -179,6 +180,35 @@ const allowedChildWindowEventMethod = [
     .c-message--highlight, .c-message--highlight_yellow_bg {
         background: var(--background-elevated) !important;
     }
+
+    .tab_complete_ui {
+        background: var(--background-elevated);
+    }
+
+    .c-team__display-name, .c-unified_member__display-name, .c-usergroup__handle {
+        color: var(--text);
+    }
+
+    .tab_complete_ui .tab_complete_ui_header {
+        background: black;
+        color: var(--text);
+    }
+
+    [lang] .channel_title .channel_name {
+        color: #8de0fb;
+    }
+
+    .channel_header_icon {
+        color: var(--text);
+    }
+
+    .c-member-slug {
+        background: var(--primary-faded) !important;
+    }
+    .c-message_actions__container {
+        background: var(--background-elevated) !important;
+    }
+
   
     // NOT WORKING
     // div.ql-editor.c-message__editor__input {
