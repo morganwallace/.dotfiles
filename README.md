@@ -21,4 +21,6 @@ fab install_dotfiles
 ```
 
 ### Fast install
+```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/morganwallace/.dotfiles/master/tools/install.sh)"
+```
