@@ -29,7 +29,7 @@ alias dev="cd $DEVHOME && ls"
 alias settings="edit $HOME/.zshrc"
 alias dotfiles="cd $DOTFILESHOME"
 alias shortcuts="edit $DOTFILESHOME/custom/aliases.zsh"
-alias mytheme="edit $DOTFILESHOME/themes/morgan.zsh-theme"
+alias mytheme="edit $DOTFILESHOME/custom/themes/morgan.zsh-theme"
 
 # System Aliases
 alias settime="sudo ntpdate -u pool.ntp.org"
@@ -44,6 +44,13 @@ alias rebuildnode="sudo apt-get --purge -f remove node && sudo apt-get --purge -
 # NOTE must install xclip: `sudo apt-get install xclip`
 alias copy="xclip -selection c"
 alias pwdc="pwd | copy"
+
+export SLACK_DEVELOPER_MENU=true
+function slackblack () {
+    killall Slack
+    sudo cp -f $DOTFILESHOME/custom/custom-slack.js /Applications/Slack.app/Contents/Resources/app.asar.unpacked/src/static/ssb-interop.js
+    export SLACK_DEVELOPER_MENU=true; open -a /Applications/Slack.app  
+}
 
 # Custom searcher
 mg () { grep -Rn "$*" *; }

@@ -38,7 +38,6 @@ def install_dotfiles():
     try:
         # local('rm -rf %s' % (os.path.join(omz_path, 'custom')))
         local('ln -sf %s %s'  % (os.path.join(dotfiles, 'custom'), os.path.join(omz_path, 'custom', 'morgans_custom')))
-        get_vq_aliases(os.path.join(omz_path, 'custom', 'morgans_custom'))
         local('cp %s %s' %\
             (os.path.join(dotfiles, 'templates', 'zshrc.zsh-template'),
             zshrc_file))
@@ -46,23 +45,16 @@ def install_dotfiles():
         pass
     local('bash %s' % (os.path.join(dotfiles, 'tools', 'install.sh')))
 
-def get_vq_aliases(target_path):
-    try:
-        local('ln -sf /srv/volta/vq* %s' % (target_path))
-    except:
-        pass
+def get_vq_aliases():
+    if os.path.exists('/srv/volta'):
+        local('ln -sf /srv/volta/vq* %s' % (os.path.join(omz_path, 'custom', 'morgans_custom')))
 
 
 def install_plugins():
-    echo('\n\n\n Adding Custom Plugins \n\n')
     dotfiles_plugins_path = os.path.join(dotfiles, 'custom', 'plugins')
-    try:
+    if not os.path.exists(dotfiles_plugins_path):
         os.makedirs(dotfiles_plugins_path)
-    except:
-        pass
-    try:
+    zsh_highlighting_path = os.path.join(dotfiles_plugins_path, 'zsh-syntax-highlighting')
+    if not os.path.exists(zsh_highlighting_path):
         local('git clone https://github.com/zsh-users/zsh-syntax-highlighting.git %s' %\
-            (os.path.join(dotfiles_plugins_path, 'zsh-syntax-highlighting')))
-    except:
-        pass
-
+            (zsh_highlighting_path))
