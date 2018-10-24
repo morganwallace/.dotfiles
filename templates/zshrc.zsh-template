@@ -51,7 +51,7 @@ ZSH_CUSTOM=~/.oh-my-zsh/custom/morgans_custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git command-not-found sudo powerline django fabric jsontools pip python fast-syntax-highlighting git-prompt vscode web-search npm)
+plugins=(gitfast command-not-found sudo powerline django fabric jsontools pip python fast-syntax-highlighting git-prompt vscode web-search npm)
 
 # User configuration
 
@@ -79,10 +79,13 @@ export LANG=en_US.UTF-8
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias zshconfig="$EDITOR ~/.zshrc"
+alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
 
+# Use Oh my zsh
 source $ZSH/oh-my-zsh.sh
+
+# Manually Add plugins
 source $ZSH/custom/morgans_custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-export EDITOR=vim
+export EDITOR='code'
