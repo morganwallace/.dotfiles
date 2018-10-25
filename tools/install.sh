@@ -108,8 +108,9 @@ main() {
   echo 'p.p.s. Get stickers and t-shirts at https://shop.planetargon.com.'
   echo ''
   printf "${NORMAL}"
+  env zsh -l
 
-  env cd ~ && git clone --depth=1 https://github.com/morganwallace/.dotfiles "~/.dotfiles" || {
+  env cd $HOME && git clone --depth=1 https://github.com/morganwallace/.dotfiles "~/.dotfiles" || {
     printf "Error: git clone of morgan's dotfiles repo failed\n"
     exit 1
   }
@@ -121,7 +122,7 @@ main() {
   }
   cd ~/.dotfiles && fab dotfiles
   
-  env zsh -l
+  
 }
 
 main
