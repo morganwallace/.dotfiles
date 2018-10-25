@@ -25,16 +25,8 @@ main() {
   set -e
 
   if ! command -v zsh >/dev/null 2>&1; then
-    printf "${YELLOW}Zsh is not installed!${NORMAL} Please install zsh first!\n"
-    if ! command -v apt-get >/dev/null 2>&1; then
-      sudo apt-get install zsh
-    fi
-    if ! command -v brew >/dev/null 2>&1; then
-      brew install zsh
-    fi
-    if ! command -v zsh >/dev/null 2>&1; then
-      printf "ZSH was not able to be install automatically. See\nhttps://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH#install-and-set-up-zsh-as-default"
-    fi
+    printf "${YELLOW}Zsh is not installed!${NORMAL} Please install zsh first!\n try: sudo apt-get install zsh"
+    exit 1
   fi
 
   if [ ! -n "$ZSH" ]; then
@@ -116,8 +108,9 @@ main() {
   echo 'p.p.s. Get stickers and t-shirts at https://shop.planetargon.com.'
   echo ''
   printf "${NORMAL}"
+  env zsh -l
 
-  env git clone --depth=1 https://github.com/morganwallace/.dotfiles "~/.dotfiles" || {
+  env cd $HOME && git clone --depth=1 https://github.com/morganwallace/.dotfiles "~/.dotfiles" || {
     printf "Error: git clone of morgan's dotfiles repo failed\n"
     exit 1
   }
@@ -129,7 +122,7 @@ main() {
   }
   cd ~/.dotfiles && fab dotfiles
   
-  env zsh -l
+  
 }
 
 main
