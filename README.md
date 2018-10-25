@@ -14,19 +14,16 @@ ZSH must already be installed:
 
 `sudo apt-get install zsh`
 
-#### Fast install
-```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/morganwallace/.dotfiles/master/tools/install.sh)"
-```
+Install fabric (python) if not already installed on machine
 
-#### Or install step by step
+`pip install fabric`
+
+
+#### Install
 Clone:
 
 `cd ~ && git clone git@github.com:morganwallace/.dotfiles.git ~/.dotfiles`
 
-Install fabric (python) if not already installed on machine
-
-`pip install fabric`
 
 Then run these commands to install everything:
 
