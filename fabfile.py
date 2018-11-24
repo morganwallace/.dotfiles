@@ -15,6 +15,14 @@ DOTFILES_PLUGINS_PATH = os.path.join(DOTFILES_PATH, 'custom', 'plugins')
 def echo(print_str):
     local('echo "%s"' % (str(print_str)))
 
+def install():
+    try:
+        omz()
+    except:
+        pass
+    dotfiles()
+    plugins()
+    get_vq_aliases()
 
 def omz():
     echo('installing oh-my-zsh')
@@ -45,10 +53,12 @@ def dotfiles():
         local('cp %s %s' %
               (os.path.join(DOTFILES_PATH, 'templates', 'zshrc.zsh-template'),
                ZSHRC_FILE_PATH))
-        local('cp {} {}'.format(os.path.join(DOTFILES_PATH, '.gitignore_global')))
+        local('ln -sf {} {}'.format(
+            os.path.join(DOTFILES_PATH, '.gitignore_global'),
+            os.path.join(HOME, '.gitignore_global')))
     except:
         pass
-    local('bash %s' % (os.path.join(DOTFILES_PATH, 'tools', 'install.sh')))
+    local('bash %s' % (os.path.join(DOTFILES_PATH, 'tools', 'post_dotfiles_install.sh')))
 
 
 def get_vq_aliases():
