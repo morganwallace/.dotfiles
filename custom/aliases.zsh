@@ -2,7 +2,7 @@
 
 # Code Editor
 alias edit="code"
-export EDITOR='code'
+export EDITOR='vim'
 alias codeupdate="sudo apt-get install code"
 alias sublupdate="sudo apt-get install subl"
 
