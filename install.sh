@@ -142,7 +142,7 @@ main() {
   fi
 
   # Replace the basic omz zshrc template with ours
-  cp ./templates/zshrc.zsh-template ~/.zshrc
+  cp $HOME/templates/zshrc.zsh-template ~/.zshrc
 
   # Symlink my global gitignore file
   ln -sf "$DOTFILES_REPO_PATH/.gitignore-global" ~/.gitignore-global
