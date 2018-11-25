@@ -124,7 +124,7 @@ main() {
 
   DOTFILES_REPO_PATH="$HOME/.dotfiles"
   if [ ! -d "$DOTFILES_REPO_PATH" ]; then
-    env git clone --depth=1 https://github.com/morganwallace/.dotfiles "$DOTFILES_REPO_PATH" || {
+    env git clone --depth=1 git@github.com:morganwallace/.dotfiles.git "$DOTFILES_REPO_PATH" || {
       printf "Error: git clone of morgan's dotfiles repo failed\n"
 
     }
