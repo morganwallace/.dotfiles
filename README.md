@@ -14,22 +14,8 @@ ZSH must already be installed:
 
 `sudo apt-get install zsh`
 
-Install fabric (python) if not already installed on machine
-
-`pip install fabric`
-
 
 #### Install
-Clone:
-
-`cd ~ && git clone git@github.com:morganwallace/.dotfiles.git ~/.dotfiles`
 
 
-Then run these commands to install everything:
-
-```
-cd .dotfiles
-fab install_omz
-fab install_plugins
-fab install_dotfiles
-```
+`sh -c "$(curl -fsSL https://raw.githubusercontent.com/morganwallace/.dotfiles/master/install.sh)"`
