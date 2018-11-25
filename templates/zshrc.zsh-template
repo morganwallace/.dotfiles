@@ -7,7 +7,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="morgan"
+ZSH_THEME="dotfiles"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -44,8 +44,9 @@ ZSH_THEME="morgan"
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
 
-# Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=~/.oh-my-zsh/custom/morgans_custom
+# Path to our customization directory
+export DOTFILES="$HOME/.dotfiles"
+export ZSH_CUSTOM="$DOTFILES/custom"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -86,6 +87,11 @@ alias ohmyzsh="$EDITOR ~/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 
 # Manually Add plugins
-source $ZSH/custom/morgans_custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-export EDITOR='code'
+# Source all external alias files
+for external_alias_file in $HOME/*alias*.zsh
+do
+    source "$external_alias_file"
+done
+ 

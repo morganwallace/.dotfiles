@@ -45,12 +45,7 @@ main() {
     ZSH=~/.oh-my-zsh
   fi
 
-  if [ -d "$ZSH" ]; then
-    printf "${YELLOW}You already have Oh My Zsh installed.${NORMAL}\n"
-    printf "You'll need to remove $ZSH if you want to re-install.\n"
-    else
-    
-
+  if [ ! -d "$ZSH" ]; then
     # Prevent the cloned repository from having insecure permissions. Failing to do
     # so causes compinit() calls to fail with "command not found: compdef" errors
     # for users with insecure umasks (e.g., "002", allowing group writability). Note
@@ -120,12 +115,14 @@ main() {
     echo 'p.p.s. Get stickers and t-shirts at https://shop.planetargon.com.'
     echo ''
     printf "${NORMAL}"
+  else
+    printf "${YELLOW}You already have Oh My Zsh installed.${NORMAL}\n"
   fi
 
-  env zsh -l
   ### End of oh-my-zsh setup
+  ### Begin .dotfiles install
 
-  DOTFILES_REPO_PATH="~/.dotfiles"
+  DOTFILES_REPO_PATH="$HOME/.dotfiles"
   if [ ! -d "$DOTFILES_REPO_PATH" ]; then
     env git clone --depth=1 https://github.com/morganwallace/.dotfiles "$DOTFILES_REPO_PATH" || {
       printf "Error: git clone of morgan's dotfiles repo failed\n"
@@ -133,13 +130,45 @@ main() {
     }
   else
     printf "${YELLOW}The path $DOTFILES_REPO_PATH already exits. '.dotfiles' was not cloned.${NORMAL}\n"
-    exit
   fi
 
+  # Install zsh plugins
+  DOTFILES_PLUGIN_PATH="$DOTFILES_REPO_PATH/custom/plugins"
+  if [ ! -d "$DOTFILES_PLUGIN_PATH" ]; then
+    mkdir "$DOTFILES_PLUGIN_PATH"
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$DOTFILES_PLUGIN_PATH/zsh-syntax-highlighting"
+  else
+    printf "${YELLOW}Syntax highlighting plugin already installed.${NORMAL}\n"
+  fi
+
+  # Replace the basic omz zshrc template with ours
+  cp ./templates/zshrc.zsh-template ~/.zshrc
+
+  # Symlink my global gitignore file
+  ln -sf "$DOTFILES_REPO_PATH/.gitignore-global" ~/.gitignore-global
+
+  # Symlink vscode user settings file
+  if [ "$(uname)" == "Darwin" ]; then
+    ln -sf "$DOTFILES_REPO_PATH/.vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
+  elif [ "$(uname)" == "Linux" ]; then 
+    ln -sf "$DOTFILES_REPO_PATH/.vscode/settings.json" "$HOME/.config/Code/User/settings.json"
+  else
+    printf "Why are you not using MacOS or Linux?  :(\n"
+  fi
+
+  printf "${BLUE}\n"
+  echo '       __      __  ____             '
+  echo '  ____/ /___  / /_/ __(_) /__  _____'
+  echo ' / __  / __ \/ __/ /_/ / / _ \/ ___/'
+  echo '/ /_/ / /_/ / /_/ __/ / /  __(__  ) '
+  echo '\__,_/\____/\__/_/ /_/_/\___/____/  '
+  
+  printf "${NORMAL}"
   printf "${BLUE}.dotfiles installed${NORMAL}\n"
   
-  cd ~/.dotfiles
   
+  env zsh -l
+
 }
 
 main
