@@ -147,15 +147,6 @@ main() {
   # Symlink my global gitignore file
   ln -sf "$DOTFILES_REPO_PATH/.gitignore-global" ~/.gitignore-global
 
-  # Symlink vscode user settings file
-  if [ "$(uname)" == "Darwin" ]; then
-    ln -sf "$DOTFILES_REPO_PATH/.vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
-  elif [ "$(uname)" == "Linux" ]; then 
-    ln -sf "$DOTFILES_REPO_PATH/.vscode/settings.json" "$HOME/.config/Code/User/settings.json"
-  else
-    printf "Why are you not using MacOS or Linux?  :(\n"
-  fi
-
   printf "${BLUE}\n"
   echo '       __      __  ____             '
   echo '  ____/ /___  / /_/ __(_) /__  _____'

@@ -1,4 +1,5 @@
 {
+    "terminal.integrated.shell.osx": "/bin/zsh",
     "files.insertFinalNewline": true,
     "window.zoomLevel": 1,
     "gitlens.advanced.messages": {
@@ -6,7 +7,6 @@
         "suppressWelcomeNotice": true
     },
     "workbench.iconTheme": "vscode-icons",
-    "gitlens.blame.file.annotationType": "hover",
     "gitlens.codeLens.enabled": false,
     "files.exclude": {
         "**/.git": true,
