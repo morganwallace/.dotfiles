@@ -1,7 +1,6 @@
 {
     "terminal.integrated.shell.osx": "/bin/zsh",
     "files.insertFinalNewline": true,
-    "window.zoomLevel": 1,
     "gitlens.advanced.messages": {
         "suppressShowKeyBindingsNotice": true,
         "suppressWelcomeNotice": true

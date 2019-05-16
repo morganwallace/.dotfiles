@@ -1,72 +1,64 @@
-# Custom aliases and functions
+#
+#  Custom aliases and functions
 
-# Code Editor
-alias edit="code"
-export EDITOR='vim'
-alias codeupdate="sudo apt-get install code"
-alias sublupdate="sudo apt-get install subl"
 
+###########
+# Locations
+###########
+
+export DOTFILESHOME=$HOME/.dotfiles
+export DEVHOME=$HOME/Developer
+export MAINALIASES=$DOTFILESHOME/custom/aliases.zsh
+
+
+#############
 # Git Aliases
+#############
+
+export GIT_AUTHOR="Morgan"
 alias gits="git status"
 alias gitundo="git reset --soft HEAD~"
 alias delbranch="git branch -D"
 alias cleanbranches="git checkout develop && git pull origin develop && git branch --merged | grep -Ev 'develop|core|\*' | xargs git branch -d && git remote prune origin"
 alias gitgraph="git log --graph --pretty=oneline --abbrev-commit"
-alias mylog="git log --author=Morgan"
-alias mygraph="git log --graph --pretty=oneline --abbrev-commit --author=Morgan"
+alias mylog="git log --author=$GIT_AUTHOR"
+alias mygraph="git log --graph --pretty=oneline --abbrev-commit --author=$GIT_AUTHOR"
 alias difflast="git diff HEAD~1"
 alias jiracommit="git commit --allow-empty -m"
+alias gc="git commit"
+alias gcn="git commit --no-verify"
+alias gch="git checkout"
+alias gchb="git checkout -b "
+alias gpu="git push"
+alias gpl="git pull"
+alias grbi="git rebase -i"
+alias gchrp="git cherry-pick"
 
-alias svba="source venv/bin/activate"
+function pr() {
+    if [ -z "$(git status --porcelain)" ]; then
+        git checkout develop
+        git branch -D "pr/$1"
+        git fetch -fu origin pull/$1/head:pr/$1
+        git checkout pr/$1
 
-# Locations
-export DOTFILESHOME=$HOME/.dotfiles
-export DEVHOME=$HOME/Developer
-
-alias dev="cd $DEVHOME && ls"
-
-# Zsh aliases
-alias settings="edit $HOME/.zshrc"
-alias dotfiles="cd $DOTFILESHOME"
-alias shortcuts="edit $DOTFILESHOME/custom/aliases.zsh"
-alias mytheme="edit $DOTFILESHOME/custom/themes/morgan.zsh-theme"
-
-# System Aliases
-alias settime="sudo ntpdate -u pool.ntp.org"
-alias lookat="watch -n1 -- "
-alias search='find . -name'
-alias killchromes='killall -i chrome'
-alias rmpyc="find . -name '*.pyc' -exec rm -rf {} \;"
-alias virt="source ${VENV_BIN}activate"
-alias act="virt"
-alias rebuildnode="sudo apt-get --purge -f remove node && sudo apt-get --purge -f remove nodejs && sudo apt-get -f install nodejs"
-
-# NOTE must install xclip: `sudo apt-get install xclip`
-alias copy="xclip -selection c"
-alias pwdc="pwd | copy"
-
-export SLACK_DEVELOPER_MENU=true
-function slackblack () {
-    killall Slack
-    sudo cp -f $DOTFILESHOME/custom/custom-slack.js /Applications/Slack.app/Contents/Resources/app.asar.unpacked/src/static/ssb-interop.js
-    export SLACK_DEVELOPER_MENU=true; open -a /Applications/Slack.app  
+        # Check to see if the git checkout was successful
+        BRANCH=$(git rev-parse --abbrev-ref HEAD)
+        if [[ "$BRANCH" == "pr/$1" ]]; then
+            git pull -f origin pull/$1/head:pr/$1
+        else
+            echo 'Was not able to change branch';
+        fi
+    else
+        echo 'Git not clean. Branch not changed'
+    fi
 }
 
-# Custom searcher
-mg () { grep -Rn "$*" *; }
-
-# Git custom functions
-function pr() {
-    git fetch -fu origin pull/$1/head:pr/$1
-    git checkout pr/$1
-
-    # Check to see if the git checkout was successful
-    BRANCH=$(git rev-parse --abbrev-ref HEAD)
-    if [[ "$BRANCH" == "pr/$1" ]]; then
-        git pull -f origin pull/$1/head:pr/$1
-    else
-        echo 'Was not able to change branch';
-    fi
+function update_rebase () {
+    cur_branch=$(git rev-parse --abbrev-ref HEAD)
+    git checkout $1
+    git pull origin $1
+    git checkout $cur_branch
+    git rebase -i $1
 }
 
 function getbranch() {
@@ -74,7 +66,84 @@ function getbranch() {
     git checkout $1
 }
 
-# Node & NPM functions
+
+########
+# Python
+########
+
+alias rmpyc="find . -name '*.pyc' -exec rm -rf {} \;"
+
+# Virtual Environments
+alias svba="source ./venv/bin/activate"
+alias virt="source ${VENV_BIN}activate"
+alias act="virt"
+export PYENV_VIRTUALENV_DISABLE_PROMPT=0
+
+# given a string of python code return the timeit performance
+function python_speed () {
+    python -m timeit -s "$1"
+}
+
+
+##############
+# Applications
+##############
+
+# Code Editor
+alias edit="code"
+
+# Slack
+export SLACK_DEVELOPER_MENU=true
+function slackblack () {
+    killall Slack
+    sudo cp -f $DOTFILESHOME/custom/custom-slack.js /Applications/Slack.app/Contents/Resources/app.asar.unpacked/src/static/ssb-interop.js
+    export SLACK_DEVELOPER_MENU=true; open -a /Applications/Slack.app
+}
+
+
+#############
+# OS Specific
+#############
+
+# MacOS
+alias dev="cd $DEVHOME && ls"
+
+# Ubuntu
+alias settime="sudo ntpdate -u pool.ntp.org"
+alias lookat="watch -n1 -- "
+# NOTE must install xclip: `sudo apt-get install xclip`
+alias copy="xclip -selection c"
+alias pwdc="pwd | copy"
+
+
+#############
+# Zsh aliases
+#############
+alias settings="edit $HOME/.zshrc"
+alias dotfiles="cd $DOTFILESHOME"
+alias shortcuts="edit $MAINALIASES"
+alias mytheme="edit $DOTFILESHOME/custom/themes/morgan.zsh-theme"
+
+function zshrefresh (){
+    source $HOME/.zshrc
+}
+alias zr="zshrefresh"
+
+
+# System Aliases
+alias search='find . -name'
+alias killchromes='killall -i chrome'
+alias myip="ifconfig | grep 'inet addr:192\.168\.[0-9]+\.[0-9]+' -o -E"
+
+
+# Custom searcher
+mg () { grep -Rn "$*" *; }
+
+
+############
+# Node & NPM
+############
+
 function vnpm() {
     sudo rm `which npm`
     sudo ln -s /usr/local/n/versions/node/$1/lib/node_modules/npm/cli.js /usr/local/bin/npm
@@ -85,3 +154,17 @@ function chnode() {
     sudo n $1
     sudo vnpm $1
 }
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+########################
+# CLI Generated Aliasing
+# ######################
+function makealias () {
+    echo "alias $1='$2'" >> $MAINALIASES
+    zshrefresh
+}
+# *- CLI-made aliases are appended here, at the end of the file: -*

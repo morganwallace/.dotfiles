@@ -22,7 +22,7 @@
 ### The prompt
 
 # Left-hand prompt
-PROMPT='%{$fg[cyan]%}%3/ %{$fg_bold[blue]%}☛ %{$reset_color%} ' # ☛ ☠
+PROMPT='%{$fg[cyan]%}%3/ %{$fg_bold[blue]%}✎ %{$reset_color%} ' # ☛ ☠ ✎
 
 # Right-hand prompt
 # looks like this:  11:48:40 (master*) ☄
