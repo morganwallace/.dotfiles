@@ -21,6 +21,6 @@ ZSH must already be installed:
 `sh -c "$(curl -fsSL https://raw.githubusercontent.com/morganwallace/.dotfiles/master/install.sh)"`
 
 
-### External aliases
+### Private aliases (not within source control)
 To keep aliases outside version control but have them installed and sourced automatically, place them in your `$HOME` directory and the name must match the wildcard statement:
 `$HOME/*aliases*.zsh` 
