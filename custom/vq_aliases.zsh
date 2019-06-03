@@ -1,1 +1,0 @@
-/srv/volta/vq_aliases.zsh
