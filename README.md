@@ -1,8 +1,8 @@
 # Morgan's Dotfiles
 
-This is a wraps [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh) and adds my customizations after ZSH and OH my ZSH install.
+This wraps [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh) and adds my customizations after ZSH and OH my ZSH install.
 
-### Installation
+## Installation
 
 #### Prerequisites
 ZSH must already be installed:
