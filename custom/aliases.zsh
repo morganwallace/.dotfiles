@@ -1,9 +1,9 @@
 #      ___       __       __       ___           _______. _______     _______.
 #     /   \     |  |     |  |     /   \         /       ||   ____|   /       |
 #    /  ^  \    |  |     |  |    /  ^  \       |   (----`|  |__     |   (----`
-#   /  /_\  \   |  |     |  |   /  /_\  \       \   \    |   __|     \   \    
-#  /  _____  \  |  `----.|  |  /  _____  \  .----)   |   |  |____.----)   |   
-# /__/     \__\ |_______||__| /__/     \__\ |_______/    |_______|_______/    
+#   /  /_\  \   |  |     |  |   /  /_\  \       \   \    |   __|     \   \
+#  /  _____  \  |  `----.|  |  /  _____  \  .----)   |   |  |____.----)   |
+# /__/     \__\ |_______||__| /__/     \__\ |_______/    |_______|_______/
 #  Custom aliases and functions for .dotfiles repo
 
 
@@ -14,6 +14,10 @@
 export DOTFILESHOME=$HOME/.dotfiles
 export DEVHOME=$HOME/Developer
 export MAINALIASES=$DOTFILESHOME/custom/aliases.zsh
+
+function addprivatealias() {
+    ln -s $1 $PRIVATE_ALIAS_DIR/
+}
 
 
 #############

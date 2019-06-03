@@ -60,7 +60,7 @@ main() {
     }
     # The Windows (MSYS) Git is not compatible with normal use on cygwin
     if [ "$OSTYPE" = cygwin ]; then
-      if git --version | grep msysgit > /dev/null; then
+      if git --version | grep msysgit > /dev/nulÏl; then
         echo "Error: Windows/MSYS Git is not supported on Cygwin"
         echo "Error: Make sure the Cygwin git package is installed and is first on the path"
         exit 1
@@ -108,7 +108,7 @@ main() {
     echo '                        /____/                       ....is now installed!'
     echo ''
     echo ''
-    echo 'Please look over the ~/.zshrc file to select plugins, themes, and options.'
+    echo "Please look over the $HOME/.zshrc file to select plugins, themes, and options."
     echo ''
     echo 'p.s. Follow us at https://twitter.com/ohmyzsh.'
     echo ''
@@ -142,10 +142,19 @@ main() {
   fi
 
   # Replace the basic omz zshrc template with ours
-  cp $DOTFILES_REPO_PATH/templates/zshrc.zsh-template ~/.zshrc
+  cp $DOTFILES_REPO_PATH/templates/zshrc.zsh-template $HOME/.zshrc
+
+  # Update the vimrc file with ours
+  cp $DOTFILES_REPO_PATH/templates/.vimrc $HOME/.vimrc
+
+  # Make a private aliases directory if one does not already exist
+  export PRIVATE_ALIASES_DIR="$HOME/.private_aliases"
+  if [ ! -d "$PRIVATE_ALIASES_DIR" ]; then
+    mkdir $PRIVATE_ALIASES_DIR
+  fi
 
   # Symlink my global gitignore file
-  ln -sf "$DOTFILES_REPO_PATH/.gitignore-global" ~/.gitignore-global
+  ln -sf "$DOTFILES_REPO_PATH/.gitignore-global" $HOME/.gitignore-global
 
   printf "${BLUE}\n"
   echo '       __      __  ____             '
@@ -153,11 +162,11 @@ main() {
   echo ' / __  / __ \/ __/ /_/ / / _ \/ ___/'
   echo '/ /_/ / /_/ / /_/ __/ / /  __(__  ) '
   echo '\__,_/\____/\__/_/ /_/_/\___/____/  '
-  
+
   printf "${NORMAL}"
   printf "${BLUE}.dotfiles installed${NORMAL}\n"
-  
-  
+
+
   env zsh -l
 
 }
