@@ -97,6 +97,9 @@ function python_speed () {
 # Code Editor
 alias edit="code"
 
+# Editor for commits and stuff
+export EDITOR='vim'
+
 # Slack
 export SLACK_DEVELOPER_MENU=true
 function slackblack () {
