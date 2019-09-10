@@ -79,7 +79,7 @@ main() {
     fi
 
     printf "${BLUE}Using the Oh My Zsh template file and adding it to ~/.zshrc${NORMAL}\n"
-    cp "$ZSH"/templates/zshrc.zsh-template ~/.zshrc
+    cp "$ZSH"/global_config/zshrc.zsh-template ~/.zshrc
     sed "/^export ZSH=/ c\\
     export ZSH=\"$ZSH\"
     " ~/.zshrc > ~/.zshrc-omztemp
@@ -141,17 +141,16 @@ main() {
     printf "${YELLOW}Syntax highlighting plugin already installed.${NORMAL}\n"
   fi
 
-  # Replace the basic omz zshrc template with ours
-  cp $DOTFILES_REPO_PATH/templates/zshrc.zsh-template $HOME/.zshrc
-
-  # Update the vimrc file with ours
-  cp $DOTFILES_REPO_PATH/templates/.vimrc $HOME/.vimrc
-
   # Make a private aliases directory if one does not already exist
   export PRIVATE_ALIASES_DIR="$HOME/.private_aliases"
   if [ ! -d "$PRIVATE_ALIASES_DIR" ]; then
     mkdir $PRIVATE_ALIASES_DIR
   fi
+  
+  ln -sf "$DOTFILES_REPO_PATH/global_config/zshrc.zsh-template" ~/.zshrc
+
+  # Symlink our vimrc file
+  ln -sf "$DOTFILES_REPO_PATH/global_config/.vimrc" ~/.vimrc
 
   # Symlink my global gitignore file
   ln -sf "$DOTFILES_REPO_PATH/.gitignore-global" $HOME/.gitignore-global
