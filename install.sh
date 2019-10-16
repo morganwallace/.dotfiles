@@ -146,14 +146,17 @@ main() {
   if [ ! -d "$PRIVATE_ALIASES_DIR" ]; then
     mkdir $PRIVATE_ALIASES_DIR
   fi
-  
-  ln -sf "$DOTFILES_REPO_PATH/global_config/zshrc.zsh-template" ~/.zshrc
 
   # Symlink our vimrc file
   ln -sf "$DOTFILES_REPO_PATH/global_config/.vimrc" ~/.vimrc
 
   # Symlink my global gitignore file
   ln -sf "$DOTFILES_REPO_PATH/.gitignore-global" $HOME/.gitignore-global
+
+  # Install pyenv
+  if [ ! -d "$HOME/.pyenv" ]; then
+    git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
+  fi
 
   printf "${BLUE}\n"
   echo '       __      __  ____             '

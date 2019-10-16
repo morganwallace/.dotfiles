@@ -83,3 +83,8 @@ for private_alias_file in $PRIVATE_ALIAS_DIR/
 do
     source "$private_alias_file"
 done
+
+# Configure pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
