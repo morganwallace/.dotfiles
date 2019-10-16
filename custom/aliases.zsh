@@ -104,14 +104,6 @@ alias edit="code"
 # Editor for commits and stuff
 export EDITOR='vim'
 
-# Slack
-export SLACK_DEVELOPER_MENU=true
-function slackblack () {
-    killall Slack
-    sudo cp -f $DOTFILESHOME/custom/custom-slack.js /Applications/Slack.app/Contents/Resources/app.asar.unpacked/src/static/ssb-interop.js
-    export SLACK_DEVELOPER_MENU=true; open -a /Applications/Slack.app
-}
-
 
 #############
 # OS Specific
