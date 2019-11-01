@@ -42,6 +42,8 @@ alias gpu="git push"
 alias gpl="git pull"
 alias grbi="git rebase -i"
 alias gchrp="git cherry-pick"
+alias gstshu="git stash -u"
+alias gcheckoutlaststash="git checkout $(git stash list | grep -P -o "(?<=WIP on )(.*)(?=:)" -m 1)"
 
 function pr() {
     if [ -z "$(git status --porcelain)" ]; then
@@ -145,7 +147,7 @@ alias zr="zshrefresh"
 # System Aliases
 alias search='find . -name'
 alias killchromes='killall -i chrome'
-alias myip="ifconfig | grep 'inet addr:192\.168\.[0-9]+\.[0-9]+' -o -E"
+alias myip="ifconfig | grep -P '(?<=inet addr:)192\.168\.[0-9]+\.[0-9]+' -o"
 
 
 # Custom searcher
