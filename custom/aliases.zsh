@@ -128,7 +128,7 @@ alias pwdc="pwd | copy"
 alias settings="edit $HOME/.zshrc"
 alias dotfiles="cd $DOTFILESHOME"
 alias shortcuts="edit $MAINALIASES"
-alias mytheme="edit $DOTFILESHOME/custom/themes/morgan.zsh-theme"
+alias mytheme="edit $DOTFILESHOME/custom/themes/dotfiles.zsh-theme"
 
 function zshrefresh (){
     source $HOME/.zshrc
