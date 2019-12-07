@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Most of this script comes directly from the oh-my-zsh install script.
 # All customizations beyond that are at the bottom.
 
@@ -71,7 +71,6 @@ main() {
       exit 1
     }
 
-
     printf "${BLUE}Looking for an existing zsh config...${NORMAL}\n"
     if [ -f ~/.zshrc ] || [ -h ~/.zshrc ]; then
       printf "${YELLOW}Found ~/.zshrc.${NORMAL} ${GREEN}Backing up to ~/.zshrc.pre-oh-my-zsh${NORMAL}\n";
@@ -79,7 +78,7 @@ main() {
     fi
 
     printf "${BLUE}Using the Oh My Zsh template file and adding it to ~/.zshrc${NORMAL}\n"
-    cp "$ZSH"/global_config/zshrc.zsh-template ~/.zshrc
+    ln -f "$ZSH"/global_config/.zshrc ~/.zshrc
     sed "/^export ZSH=/ c\\
     export ZSH=\"$ZSH\"
     " ~/.zshrc > ~/.zshrc-omztemp
@@ -156,6 +155,11 @@ main() {
   # Install pyenv
   if [ ! -d "$HOME/.pyenv" ]; then
     git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
+  fi
+
+   # Install pyenv
+  if [ ! -d "$HOME/.pyenv" ]; then
+    git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
   fi
 
   printf "${BLUE}\n"

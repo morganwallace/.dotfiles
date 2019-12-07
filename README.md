@@ -12,27 +12,14 @@ This wraps [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh) and adds custo
     - VS Code
     - Vim
     - .gitignore-global
-- Aliases and functions galore!
+- Aliases
+- Commands (`bin/`)
 - Customizable
     - Put new zsh aliases in `/custom`
 
 ## Installation
 
-#### Prerequisites
-ZSH must already be installed:
-* MacOs
-
-`brew install zsh`
-
-* Ubuntu
-
-`sudo apt-get install zsh`
-
-
-#### Install
-
-
-`sh -c "$(curl -fsSL https://raw.githubusercontent.com/morganwallace/.dotfiles/master/install.sh)"`
+`sh -c "$(curl -fsSL https://raw.githubusercontent.com/morganwallace/.dotfiles/master/bin/install_files)"`
 
 
 ### Private aliases (not within source control)

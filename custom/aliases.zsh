@@ -130,6 +130,7 @@ alias settings="edit $HOME/.zshrc"
 alias dotfiles="cd $DOTFILESHOME"
 alias shortcuts="edit $MAINALIASES"
 alias mytheme="edit $DOTFILESHOME/custom/themes/dotfiles.zsh-theme"
+alias zshconf="edit $DOTFILES/global_config/.zshrc"
 
 function zshrefresh (){
     source $HOME/.zshrc
@@ -166,7 +167,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-
 ########################
 # CLI Generated Aliasing
 # ######################
@@ -175,3 +175,4 @@ function makealias () {
     zshrefresh
 }
 # *- CLI-made aliases are appended here, at the end of the file: -*
+alias dotact='. /Users/morgan/.pyenv/versions/3.8.0/envs/dotfiles_env/bin/activate'
