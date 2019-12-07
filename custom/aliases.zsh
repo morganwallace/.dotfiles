@@ -1,28 +1,29 @@
-#      ___       __       __       ___           _______. _______     _______.
-#     /   \     |  |     |  |     /   \         /       ||   ____|   /       |
-#    /  ^  \    |  |     |  |    /  ^  \       |   (----`|  |__     |   (----`
-#   /  /_\  \   |  |     |  |   /  /_\  \       \   \    |   __|     \   \
-#  /  _____  \  |  `----.|  |  /  _____  \  .----)   |   |  |____.----)   |
-# /__/     \__\ |_______||__| /__/     \__\ |_______/    |_______|_______/
-#  Custom aliases and functions for .dotfiles repo
+# #      ___       __       __       ___           _______. _______     _______.
+# #     /   \     |  |     |  |     /   \         /       ||   ____|   /       |
+# #    /  ^  \    |  |     |  |    /  ^  \       |   (----`|  |__     |   (----`
+# #   /  /_\  \   |  |     |  |   /  /_\  \       \   \    |   __|     \   \
+# #  /  _____  \  |  `----.|  |  /  _____  \  .----)   |   |  |____.----)   |
+# # /__/     \__\ |_______||__| /__/     \__\ |_______/    |_______|_______/
+# #  Custom aliases and functions for .dotfiles repo
 
 
-###########
-# Locations
-###########
+# ###########
+# # Locations
+# ###########
 
-export DOTFILESHOME=$HOME/.dotfiles
-export DEVHOME=$HOME/Developer
-export MAINALIASES=$DOTFILESHOME/custom/aliases.zsh
+# export DOTFILESHOME=$HOME/.dotfiles
+# export DEVHOME=$HOME/Developer
+# export MAINALIASES=$DOTFILESHOME/custom/aliases.zsh
 
-function addprivatealias() {
-    ln -s $1 $PRIVATE_ALIAS_DIR/
-}
+# function addprivatealias() {
+#     ln -s $1 $PRIVATE_ALIAS_DIR/
+# }
 
 
-#############
-# Git Aliases
-#############
+# #############
+# # Git Aliases
+# #############
+
 
 export GIT_AUTHOR="Morgan"
 alias gits="git status"
@@ -43,7 +44,7 @@ alias gpl="git pull"
 alias grbi="git rebase -i"
 alias gchrp="git cherry-pick"
 alias gstshu="git stash -u"
-alias gcheckoutlaststash="git checkout $(git stash list | grep -P -o "(?<=WIP on )(.*)(?=:)" -m 1)"
+alias gcheckoutlaststash='git checkout $(git stash list | grep -P -o "(?<=WIP on )(.*)(?=:)" -m 1)'
 
 function pr() {
     if [ -z "$(git status --porcelain)" ]; then
@@ -78,9 +79,9 @@ function getbranch() {
 }
 
 
-########
-# Python
-########
+# ########
+# # Python
+# ########
 
 alias rmpyc="find . -name '*.pyc' -exec rm -rf {} \;"
 
