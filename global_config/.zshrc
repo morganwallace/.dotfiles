@@ -79,7 +79,7 @@ source $ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Source all external alias files
 export PRIVATE_ALIAS_DIR="$HOME/.private_aliases"
-for file in $PRIVATE_ALIAS_DIR/* ; do
+for file in "$PRIVATE_ALIAS_DIR/*" ; do
   if [ -f "$file" ] ; then
     source "$file"
   fi
