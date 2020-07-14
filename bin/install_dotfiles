@@ -157,7 +157,7 @@ main() {
     git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
   fi
 
-   # Install pyenv
+   # Install pyenv-virtualenv
   if [ ! -d "$HOME/.pyenv" ]; then
     git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
   fi
