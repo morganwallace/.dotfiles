@@ -19,7 +19,7 @@ This wraps [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh) and adds custo
 
 ## Installation
 
-`sh -c "$(curl -fsSL https://raw.githubusercontent.com/morganwallace/.dotfiles/master/bin/install_files)"`
+`sh -c "$(curl -fsSL https://raw.githubusercontent.com/morganwallace/.dotfiles/master/bin/install_dotfiles)"`
 
 
 ### Private aliases (not within source control)
