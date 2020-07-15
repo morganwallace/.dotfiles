@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Install a new python environment
+pyenv virtualenv dotiles_env_py38
+pyenv activate dotiles_env_py38
+
+python -m pip install -r "$DOTFILES/pip-requirements.txt"

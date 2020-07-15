@@ -5,3 +5,7 @@ log/
 custom/plugins
 
 *.pyc
+
+# Ignore pip's requirements.txt file since we install python packages with pip-tools
+# and this file will be produced on-the-fly by pip-compile.
+requirements.txt
