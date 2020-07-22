@@ -1,7 +1,7 @@
 ### The prompt
 
 # Left-hand prompt
-PROMPT='(pyenv: $(pyenv version-name))%{$fg[cyan]%}%3/ %{$fg_bold[blue]%}✎ %{$reset_color%} ' # ☛ ☠ ✎
+PROMPT='(py: $(pyenv version-name))%{$fg[cyan]%}%3/ %{$fg_bold[blue]%}✎ %{$reset_color%} ' # ☛ ☠ ✎
 
 # Right-hand prompt
 # Looks like this: (master|✚3)
