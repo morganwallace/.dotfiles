@@ -11,13 +11,8 @@
 # # Locations
 # ###########
 
-# export DOTFILESHOME=$HOME/.dotfiles
-# export DEVHOME=$HOME/Developer
-# export MAINALIASES=$DOTFILESHOME/custom/aliases.zsh
-
-# function addprivatealias() {
-#     ln -s $1 $PRIVATE_ALIAS_DIR/
-# }
+export DOTFILESHOME=$HOME/.dotfiles
+export MAINALIASES=$DOTFILESHOME/custom/aliases.zsh
 
 
 # #############
@@ -109,13 +104,9 @@ export EDITOR='vim'
 
 
 #############
-# OS Specific
+# Ubuntu Specific
 #############
 
-# MacOS
-alias dev="cd $DEVHOME && ls"
-
-# Ubuntu
 alias settime="sudo ntpdate -u pool.ntp.org"
 alias lookat="watch -n1 -- "
 # NOTE must install xclip: `sudo apt-get install xclip`
