@@ -52,7 +52,7 @@ export ZSH_CUSTOM="$DOTFILES/custom"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast command-not-found sudo django fabric jsontools pip python git-prompt vscode web-search npm)
+plugins=(gitfast command-not-found sudo django fabric jsontools pip python git-prompt vscode web-search npm env)
 
 # User configuration
 
@@ -71,6 +71,9 @@ export LANG=en_US.UTF-8
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+# Ignore file permissions issues when making tab completions
+ZSH_DISABLE_COMPFIX=true
+
 # Use Oh my zsh
 source $ZSH/oh-my-zsh.sh
 
@@ -78,14 +81,10 @@ source $ZSH/oh-my-zsh.sh
 source $ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Source all external alias files
-export PRIVATE_ALIAS_DIR="$HOME/.private_aliases"
-for file in "$PRIVATE_ALIAS_DIR/*" ; do
-  if [ -f "$file" ] ; then
-    source "$file"
-  fi
-done
+for file in $HOME/.private_aliases/**/*.zsh; do source $file; done
 
 # Configure pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
