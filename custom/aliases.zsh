@@ -91,6 +91,7 @@ function python_speed () {
     python -m timeit -s "$1"
 }
 
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 ##############
 # Applications
