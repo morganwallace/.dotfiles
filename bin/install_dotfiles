@@ -41,6 +41,17 @@ main() {
     fi
   fi
 
+  DOTFILES="$HOME/.dotfiles"
+  if [ ! -d "$DOTFILES" ]; then
+    env git clone --depth=1 git@github.com:morganwallace/.dotfiles.git "$DOTFILES" || {
+      printf "Error: git clone of morgan's dotfiles repo failed\n"
+
+    }
+  else
+    printf "${YELLOW}The path $DOTFILES already exits. '.dotfiles' was not cloned.${NORMAL}\n"
+  fi
+
+
   if [ ! -n "$ZSH" ]; then
     ZSH=~/.oh-my-zsh
   fi
@@ -78,7 +89,7 @@ main() {
     fi
 
     printf "${BLUE}Using the Oh My Zsh template file and adding it to ~/.zshrc${NORMAL}\n"
-    ln -f "$ZSH"/global_config/.zshrc ~/.zshrc
+    ln -s ~/.dotfiles/global_config/.zshrc ~/.zshrc
     sed "/^export ZSH=/ c\\
     export ZSH=\"$ZSH\"
     " ~/.zshrc > ~/.zshrc-omztemp
@@ -121,18 +132,8 @@ main() {
   ### End of oh-my-zsh setup
   ### Begin .dotfiles install
 
-  DOTFILES_REPO_PATH="$HOME/.dotfiles"
-  if [ ! -d "$DOTFILES_REPO_PATH" ]; then
-    env git clone --depth=1 git@github.com:morganwallace/.dotfiles.git "$DOTFILES_REPO_PATH" || {
-      printf "Error: git clone of morgan's dotfiles repo failed\n"
-
-    }
-  else
-    printf "${YELLOW}The path $DOTFILES_REPO_PATH already exits. '.dotfiles' was not cloned.${NORMAL}\n"
-  fi
-
   # Install zsh plugins
-  DOTFILES_PLUGIN_PATH="$DOTFILES_REPO_PATH/custom/plugins"
+  DOTFILES_PLUGIN_PATH="$DOTFILES/custom/plugins"
   if [ ! -d "$DOTFILES_PLUGIN_PATH" ]; then
     mkdir "$DOTFILES_PLUGIN_PATH"
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$DOTFILES_PLUGIN_PATH/zsh-syntax-highlighting"
@@ -147,10 +148,10 @@ main() {
   fi
 
   # Symlink our vimrc file
-  ln -sf "$DOTFILES_REPO_PATH/global_config/.vimrc" ~/.vimrc
+  ln -sf "$DOTFILES/global_config/.vimrc" ~/.vimrc
 
   # Symlink my global gitignore file
-  ln -sf "$DOTFILES_REPO_PATH/.gitignore-global" $HOME/.gitignore-global
+  ln -sf "$DOTFILES/.gitignore-global" $HOME/.gitignore-global
 
   # Install pyenv
   if [ ! -d "$HOME/.pyenv" ]; then
