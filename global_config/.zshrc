@@ -52,7 +52,7 @@ export ZSH_CUSTOM="$DOTFILES/custom"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast command-not-found sudo django fabric jsontools pip python git-prompt vscode web-search npm env)
+plugins=(gitfast command-not-found sudo django fabric jsontools pip python git-prompt vscode web-search npm dotenv)
 
 # User configuration
 
