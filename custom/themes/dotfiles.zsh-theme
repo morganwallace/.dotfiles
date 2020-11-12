@@ -1,7 +1,15 @@
 ### The prompt
 
 # Left-hand prompt
-PROMPT='(py: $(pyenv version-name))%{$fg[cyan]%}%4/ %{$fg_bold[blue]%}✎ %{$reset_color%} ' # ☛ ☠ ✎
+function py {
+    if command -v pyenv &> /dev/null
+    then
+        echo "$(pyenv version-name)"
+    else
+        echo "$(python --version)"
+    fi
+}
+PROMPT='<$(py)>%{$fg[cyan]%}%4/ %{$fg_bold[blue]%}✎ %{$reset_color%} ' # ☛ ☠ ✎
 
 # Right-hand prompt
 # Looks like this: (master|✚3)

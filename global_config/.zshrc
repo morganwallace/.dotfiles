@@ -7,7 +7,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="dotfiles"
+ZSH_THEME="my_fino"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -86,5 +86,8 @@ for file in $HOME/.private_aliases/**/*.zsh; do source $file; done
 # Configure pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+if command -v pyenv &> /dev/null
+    then
+        eval "$(pyenv init -)"
+        eval "$(pyenv virtualenv-init -)"
+fi

@@ -40,6 +40,7 @@ alias grbi="git rebase -i"
 alias gchrp="git cherry-pick"
 alias gstshu="git stash -u"
 alias gcheckoutlaststash='git checkout $(git stash list | grep -P -o "(?<=WIP on )(.*)(?=:)" -m 1)'
+alias newbranch="git checkout master && git pull origin master && git checkout -b "
 
 function pr() {
     if [ -z "$(git status --porcelain)" ]; then
@@ -84,7 +85,6 @@ alias rmpyc="find . -name '*.pyc' -exec rm -rf {} \;"
 alias svba="source ./venv/bin/activate"
 alias virt="source ${VENV_BIN}activate"
 alias act="virt"
-export PYENV_VIRTUALENV_DISABLE_PROMPT=0
 
 # given a string of python code return the timeit performance
 function python_speed () {
@@ -113,6 +113,7 @@ alias lookat="watch -n1 -- "
 # NOTE must install xclip: `sudo apt-get install xclip`
 alias copy="xclip -selection c"
 alias pwdc="pwd | copy"
+alias lsusers="cut -d: -f1 /etc/passwd"
 
 
 #############
@@ -169,3 +170,4 @@ function makealias () {
 # *- CLI-made aliases are appended here, at the end of the file: -*
 alias dotact='. /Users/morgan/.pyenv/versions/3.8.0/envs/dotfiles_env/bin/activate'
 alias actdot="dotact"
+alias zrc='code /home/morgan/.dotfiles/global_config/.zshrc'
