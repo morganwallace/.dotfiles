@@ -170,4 +170,4 @@ function makealias () {
 # *- CLI-made aliases are appended here, at the end of the file: -*
 alias dotact='. /Users/morgan/.pyenv/versions/3.8.0/envs/dotfiles_env/bin/activate'
 alias actdot="dotact"
-alias zrc='code /home/morgan/.dotfiles/global_config/.zshrc'
+alias zrc="code $DOTFILES/global_config/.zshrc"
