@@ -125,6 +125,11 @@ alias shortcuts="edit $MAINALIASES"
 alias mytheme="edit $DOTFILESHOME/custom/themes/dotfiles.zsh-theme"
 alias zshconf="edit $DOTFILES/global_config/.zshrc"
 
+function localalias () {
+    touch "~/.private_aliases/$1.zsh"
+    ln -s "~/.private_aliases/$1.zsh" aliases.zsh
+}
+
 function zshrefresh (){
     source $HOME/.zshrc
 }
@@ -159,6 +164,19 @@ function chnode() {
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+########
+# Docker
+########
+function dkr () {
+    # Shortcut to run commands in a docker container
+    # Usage: dkr <container-name> <command>
+    docker exec -it $1 $2
+}
+function dkrbash () {
+    dkr $1 bash
+}
 
 ########################
 # CLI Generated Aliasing
