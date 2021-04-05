@@ -34,13 +34,20 @@ alias gc="git commit"
 alias gcn="git commit --no-verify"
 alias gch="git checkout"
 alias gchb="git checkout -b "
-alias gpu="git push"
+alias gp="git push"
+alias gpo="git push origin"
 alias gpl="git pull"
-alias grbi="git rebase -i"
+alias gplo="git pull origin"
+alias gri="git rebase -i"
 alias gchrp="git cherry-pick"
 alias gstshu="git stash -u"
 alias gcheckoutlaststash='git checkout $(git stash list | grep -P -o "(?<=WIP on )(.*)(?=:)" -m 1)'
 alias newbranch="git checkout master && git pull origin master && git checkout -b "
+alias lastcommithash="git log -n 1 | head -n 1 | sed -e 's/^commit //'"
+alias squash="git commit --squash $(lastcommithash)"
+function grih() {
+    git rebase -i HEAD~$1
+}
 
 function pr() {
     if [ -z "$(git status --porcelain)" ]; then
@@ -115,6 +122,19 @@ alias copy="xclip -selection c"
 alias pwdc="pwd | copy"
 alias lsusers="cut -d: -f1 /etc/passwd"
 
+alias settime="sudo ntpdate -u pool.ntp.org"
+alias lookat="watch -n1 -- "
+# NOTE must install xclip: `sudo apt-get install xclip`
+alias copy="xclip -selection c"
+alias pwdc="pwd | copy"
+alias lsusers="cut -d: -f1 /etc/passwd"
+
+
+#############
+# Mac Specific
+#############
+alias runintel='arch -x86_64'
+alias wheresgit='xcode-select --install'
 
 #############
 # Zsh aliases
