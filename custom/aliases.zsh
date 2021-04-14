@@ -48,6 +48,7 @@ alias squash="git commit --squash $(lastcommithash)"
 function grih() {
     git rebase -i HEAD~$1
 }
+alias keepssh="eval '$(ssh-agent -s)' && ssh-add ~/.ssh/id_rsa"
 
 function pr() {
     if [ -z "$(git status --porcelain)" ]; then
