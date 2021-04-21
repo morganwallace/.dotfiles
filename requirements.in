@@ -1,3 +1,4 @@
-Click==7.0
-pre-commit==1.20.0
-pytest==5.3.1
+Click
+pre-commit
+pytest
+pre-commit-installed
