@@ -141,6 +141,7 @@ main() {
   export PRIVATE_ALIASES_DIR="$HOME/.private_aliases"
   if [ ! -d "$PRIVATE_ALIASES_DIR" ]; then
     mkdir $PRIVATE_ALIASES_DIR
+    touch "$PRIVATE_ALIASES_DIR/local.zsh"
   fi
 
   # Symlink our vimrc file
