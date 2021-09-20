@@ -9,7 +9,7 @@ function py {
         echo "$(python --version)"
     fi
 }
-PROMPT='<py:$(py)>%{$fg[cyan]%}%4/ %{$fg_bold[blue]%}✎ %{$reset_color%} ' # ☛ ☠ ✎
+PROMPT='%{$fg[cyan]%}%4/ %{$fg_bold[blue]%}✎ %{$reset_color%} ' # ☛ ☠ ✎
 
 # Right-hand prompt
 # Looks like this: (master|✚3)
