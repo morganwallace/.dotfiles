@@ -17,7 +17,7 @@ function py {
 }
 
 PROMPT="╭─%{$FG[040]%}%n%{$reset_color%} %{$FG[239]%}at%{$reset_color%} %{$FG[033]%}$(box_name)%{$reset_color%} %{$FG[239]%}in%{$reset_color%} %{$terminfo[bold]$FG[226]%}%~%{$reset_color%}\$(git_prompt_info) %{$FG[239]%}%D - %*%{$reset_color%}
-╰─\$(py)\$(prompt_char) "
+╰─\$(prompt_char) "
 RPROMPT=""
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" %{$FG[239]%}on%{$reset_color%} %{$fg[255]%}"
