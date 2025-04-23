@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+
+# Install an SSH key for GitHub
+SSH_KEY_RSA="$HOME/.ssh/id_rsa"
+SSH_KEY_ED25519="$HOME/.ssh/id_ed25519"
+
+if [ -f "$SSH_KEY_RSA" ] || [ -f "$SSH_KEY_ED25519" ]; then
+    if [ -f "$SSH_KEY_RSA" ]; then
+        printf "${YELLOW}An RSA SSH key already exists at $SSH_KEY_RSA.${NORMAL}\n"
+    fi
+    if [ -f "$SSH_KEY_ED25519" ]; then
+        printf "${YELLOW}An ed25519 SSH key already exists at $SSH_KEY_ED25519.${NORMAL}\n"
+    fi
+
+    # Prompt the user to create a new SSH key
+    read -p "Do you want to create a new SSH key? (yes/no) [no]: " CREATE_NEW
+    CREATE_NEW=${CREATE_NEW:-no}
+    if [[ "$CREATE_NEW" =~ ^[Yy][Ee][Ss]$ || "$CREATE_NEW" =~ ^[Yy]$ ]]; then
+        printf "${BLUE}Generating a new ed25519 SSH key...${NORMAL}\n"
+
+        # Prompt the user for their email address
+        read -p "Enter your email address for the SSH key: " EMAIL
+        if [ -z "$EMAIL" ]; then
+            printf "${RED}Email address cannot be empty. Exiting...${NORMAL}\n"
+            exit 1
+        fi
+
+        NEW_SSH_KEY="$HOME/.ssh/id_ed25519_$(date +%Y%m%d%H%M%S)"
+        ssh-keygen -t ed25519 -C "$EMAIL" -f $NEW_SSH_KEY -N ""
+        printf "${GREEN}SSH key generated successfully at $NEW_SSH_KEY.${NORMAL}\n"
+    else
+        printf "${YELLOW}Using the existing SSH key(s).${NORMAL}\n"
+    fi
+else
+    printf "${BLUE}No SSH key found. Generating a new ed25519 SSH key...${NORMAL}\n"
+
+    # Prompt the user for their email address
+    read -p "Enter your email address for the SSH key: " EMAIL
+    if [ -z "$EMAIL" ]; then
+        printf "${RED}Email address cannot be empty. Exiting...${NORMAL}\n"
+        exit 1
+    fi
+
+    NEW_SSH_KEY="$SSH_KEY_ED25519"
+    ssh-keygen -t ed25519 -C "$EMAIL" -f "$NEW_SSH_KEY" -N ""
+    printf "${GREEN}SSH key generated successfully at $NEW_SSH_KEY.${NORMAL}\n"
+fi
+
+# Display the public key
+if [ -f "$NEW_SSH_KEY.pub" ]; then
+    PUBLIC_KEY="$NEW_SSH_KEY.pub"
+else
+    PUBLIC_KEY="$SSH_KEY_RSA.pub"
+fi
+
+printf "${BLUE}Here is your public SSH key:${NORMAL}\n"
+cat "$PUBLIC_KEY"
+printf "${YELLOW}Please add this SSH key to your GitHub account: https://github.com/settings/keys${NORMAL}\n"
+
+# Wait for confirmation
+while true; do
+    read -p "Have you added the SSH key to GitHub? (yes/no): " CONFIRM
+    case $CONFIRM in
+        [Yy]* ) break;;
+        [Nn]* ) printf "${YELLOW}Please add the SSH key to GitHub before proceeding.${NORMAL}\n";;
+        * ) printf "${RED}Please answer yes or no.${NORMAL}\n";;
+    esac
+done
+
+# Update git config
+read -p "Enter your name: " NAME
+if [ -z "$NAME" ]; then
+    printf "${RED}Name cannot be empty. Exiting...${NORMAL}\n"
+    exit 1
+fi
+
+read -p "Enter your GitHub username: " GITHUB_USERNAME
+if [ -z "$GITHUB_USERNAME" ]; then
+printf "${RED}GitHub username cannot be empty. Exiting...${NORMAL}\n"
+exit 1
+fi
+
+git config --global user.name "$NAME"
+git config --global user.email "$EMAIL"
+git config --global user.github "$GITHUB_USERNAME"
+
+printf "${GREEN}Git configuration updated successfully.${NORMAL}\n"

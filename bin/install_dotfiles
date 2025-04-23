@@ -41,6 +41,9 @@ main() {
     fi
   fi
 
+  # Install an ssh key for github
+  bash "$HOME/.dotfiles/bin/configure_ssh"
+
   DOTFILES="$HOME/.dotfiles"
   if [ ! -d "$DOTFILES" ]; then
     env git clone --depth=1 git@github.com:morganwallace/.dotfiles.git "$DOTFILES" || {
