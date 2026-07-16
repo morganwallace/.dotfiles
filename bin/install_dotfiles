@@ -153,16 +153,9 @@ main() {
   # Symlink my global gitignore file
   ln -sf "$DOTFILES/.gitignore-global" $HOME/.gitignore-global
 
-  # Install pyenv
-  if [ ! -d "$HOME/.pyenv" ]; then
-    git clone https://github.com/pyenv/pyenv.git $HOME/.pyenv
-  fi
-
-   # Install pyenv-virtualenv
-  if [ ! -d "$HOME/.pyenv" ]; then
-    git clone https://github.com/pyenv/pyenv-virtualenv.git $HOME/.pyenv/plugins/pyenv-virtualenv
-  fi
-
+  # Symlink my global gitconfig file
+  ln -sf "$DOTFILES/global_config/.gitconfig" $HOME/.gitconfig
+  
   printf "${BLUE}\n"
   echo '       __      __  ____             '
   echo '  ____/ /___  / /_/ __(_) /__  _____'
