@@ -4,8 +4,6 @@
 #
 #    pip-compile requirements.in
 #
-attrs==21.2.0
-    # via pytest
 cfgv==3.2.0
     # via pre-commit
 click==7.1.2
@@ -20,11 +18,11 @@ iniconfig==1.1.1
     # via pytest
 nodeenv==1.6.0
     # via pre-commit
-packaging==20.9
+packaging==26.2
     # via pytest
 platformdirs==4.3.6
     # via virtualenv
-pluggy==0.13.1
+pluggy==1.6.0
     # via pytest
 pre-commit==2.12.1
     # via
@@ -32,17 +30,13 @@ pre-commit==2.12.1
     #   pre-commit-installed
 pre-commit-installed==0.0.1
     # via -r requirements.in
-py==1.10.0
+pygments==2.20.0
     # via pytest
-pyparsing==2.4.7
-    # via packaging
-pytest==6.2.4
+pytest==9.0.3
     # via -r requirements.in
 pyyaml==5.4.1
     # via pre-commit
 toml==0.10.2
-    # via
-    #   pre-commit
-    #   pytest
+    # via pre-commit
 virtualenv==20.26.6
     # via pre-commit
