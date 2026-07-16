@@ -89,11 +89,6 @@ function getbranch() {
 
 alias rmpyc="find . -name '*.pyc' -exec rm -rf {} \;"
 
-# Virtual Environments
-alias svba="source ./venv/bin/activate"
-alias virt="source ${VENV_BIN}activate"
-alias act="virt"
-
 # given a string of python code return the timeit performance
 function python_speed () {
     python -m timeit -s "$1"

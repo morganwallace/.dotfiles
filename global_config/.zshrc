@@ -59,7 +59,7 @@ export ZSH_CUSTOM="$DOTFILES/custom"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast command-not-found sudo fabric pip python git-prompt npm dotenv docker)
+plugins=(gitfast command-not-found sudo python git-prompt npm dotenv docker)
 
 # User configuration
 
@@ -90,9 +90,4 @@ source $ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Source all external alias files
 for file in $HOME/.private_aliases/**/*.zsh; do source $file; done
 
-# Configure pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+eval "$(uv generate-shell-completion bash)"
